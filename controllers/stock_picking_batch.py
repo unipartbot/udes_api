@@ -20,7 +20,7 @@ def _get_single_batch_info(batch, allowed_picking_states=None):
 
     res = info[0]
 
-    res['completed_tasks'] = batch.get_tasks(type='done')
+    res['completed_tasks'] = batch.get_tasks(state='done')
 
     return res
 
