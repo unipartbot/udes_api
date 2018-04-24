@@ -18,7 +18,11 @@ def _get_single_batch_info(batch, allowed_picking_states=None):
     info = batch.get_info(allowed_picking_states)
     assert len(info) == 1, "expected exactly one batch"
 
-    return info[0]
+    res = info[0]
+
+    res['completed_tasks'] = batch.get_tasks(state='done')
+
+    return res
 
 
 def _get_batch(env, batch_id_txt):
