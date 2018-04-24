@@ -11,7 +11,7 @@ from .main import UdesApi
 ## Helpers
 #
 
-def _get_single_batch_info(batch, allowed_picking_states=None, completed_tasks=False):
+def _get_single_batch_info(batch, allowed_picking_states=None):
     if not batch:
         return {}
 
@@ -20,8 +20,7 @@ def _get_single_batch_info(batch, allowed_picking_states=None, completed_tasks=F
 
     res = info[0]
 
-    if completed_tasks:
-        res['completed_tasks'] = batch.get_tasks(type='done')
+    res['completed_tasks'] = batch.get_tasks(type='done')
 
     return res
 
@@ -69,8 +68,7 @@ class PickingBatchApi(UdesApi):
         batch = PickingBatch.get_single_batch()
 
         return _get_single_batch_info(batch,
-                                      allowed_picking_states=['assigned'],
-                                      completed_tasks=completed_tasks)
+                                      allowed_picking_states=['assigned'])
 
     @http.route('/api/stock-picking-batch/',
                 type='json', methods=['POST'], auth='user')
