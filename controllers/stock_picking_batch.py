@@ -51,7 +51,7 @@ class PickingBatchApi(UdesApi):
 
     @http.route('/api/stock-picking-batch/',
                 type='json', methods=['GET'], auth='user')
-    def get_users_batch(self, completed_tasks=False):
+    def get_users_batch(self):
         """
         Search for a picking batch in progress for the current user.
         If no batch is found, but pickings exist, create a new batch.
